@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const encodingJapanese = require('encoding-japanese');
 const QRCode = require('qrcode');
 const utf8 = require('utf8');
-const TOKEN = '5006595568:AAErikuGz_araW20-uHbO6F7psCcRSGsbcA';
+const TOKEN = '5006595568:AAHgH1G0bBx2_PEqoNTJe7BdfQoLWGjsXT8';
 const bot = new TelegramBot(TOKEN, {polling: true});
 
 bot.onText(/\/start/, msg => {
