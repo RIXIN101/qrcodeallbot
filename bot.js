@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const encodingJapanese = require('encoding-japanese');
 const QRCode = require('qrcode');
 const utf8 = require('utf8');
-const TOKEN = '5006595568:AAHsMePBzqcuC-p4YoWqCSlhe8dJwKv-uYU';
+const TOKEN = '5006595568:AAETdSpWXBai6T13u7ZDybJnK9wxTbO768A';
 const bot = new TelegramBot(TOKEN, {polling: true});
 
 bot.onText(/\/start/, msg => {
@@ -14,13 +14,13 @@ bot.onText(/\/help/, msg => {
 });
 
 bot.on('message',  msg => {
-    if (msg.text != undefined) {
+    if (msg.text == undefined || msg.sticker != undefined) {
+        bot.sendMessage(msg.chat.id, 'Тот формат данных, который вы нам отправили не поддерживается, но в скором времени мы это исправим!');
+    } else {
         const text = msg.text;
         QRCodeGenerator(text).then(response => {
             bot.sendPhoto(msg.chat.id, response);
         });
-    } else {
-        bot.sendMessage(msg.chat.id, 'Тот формат данных, который вы нам отправили не поддерживается, но в скором времени мы это исправим!');
     }
 });
 
