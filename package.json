@@ -2,11 +2,18 @@
   "name": "qrcodeallbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./index.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "encoding-japanese": "^1.0.30",
+    "node-telegram-bot-api": "^0.54.0",
+    "nodemon": "^2.0.15",
+    "qrcode": "^1.5.0",
+    "utf8": "^3.0.0"
+  }
 }
