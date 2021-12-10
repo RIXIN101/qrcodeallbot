@@ -1,5 +1,4 @@
 const TelegramBot = require('node-telegram-bot-api');
-const encodingJapanese = require('encoding-japanese');
 const QRCode = require('qrcode');
 const TOKEN = '5006595568:AAEnLGjRZSsYuneP5BBhY-YN3rItJfJxTD4';
 const bot = new TelegramBot(TOKEN, {polling: true});
