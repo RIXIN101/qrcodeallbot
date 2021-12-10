@@ -13,10 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "encoding-japanese": "^1.0.30",
+    "fs": "^0.0.1-security",
     "node-telegram-bot-api": "^0.54.0",
     "nodemon": "^2.0.15",
-    "qrcode": "^1.5.0",
-    "utf8": "^3.0.0"
+    "qrcode": "^1.5.0"
   }
 }
