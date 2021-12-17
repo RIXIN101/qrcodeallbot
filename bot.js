@@ -1,11 +1,14 @@
 const TelegramBot = require('node-telegram-bot-api');
 const QRCode = require('qrcode');
-const TOKEN = '5006595568:AAEnLGjRZSsYuneP5BBhY-YN3rItJfJxTD4';
+const TOKEN = '5006595568:AAE_-5dkkL_dUfjrstNAz8GK5pgQt6S6e6g';
 const bot = new TelegramBot(TOKEN, {polling: true});
 const fs = require('fs');
+const request = require('request');
+// const { AwesomeQR } = require('awesome-qr');
+
 
 bot.onText(/\/start/, msg => {
-    bot.sendMessage(msg.chat.id, 'Приветсвуем вас в нашем боте.\nОн позволяет генерировать QR коды для любого текста, который вы хотите.\nБудь то _ссылки_ или просто _текст_, который вы хотите передать кому-либо в виде QR кода!', {parse_mode: "Markdown"});
+    bot.sendMessage(msg.chat.id, 'Приветсвуем вас в нашем боте.\nОн позволяет генерировать QR коды для любого текста, который вы хотите.\nБудь то _ссылки_ или просто _текст_, который вы хотите передать кому-либо в виде QR кода!\n_Не генерируем QR коды для ковида_', {parse_mode: "Markdown"});
 });
 
 bot.onText(/\/help/, msg => {
@@ -23,7 +26,7 @@ setInterval(() => {
     })
 }, 30000);
 
-bot.on('message',  msg => {
+bot.on('message', async msg => {
     if (msg.text != '/start' && msg.text != '/help') {
         if (msg.text == undefined || msg.sticker != undefined) {
             bot.sendMessage(msg.chat.id, 'Тот формат данных, который вы нам отправили не поддерживается, но в скором времени мы это исправим!');
@@ -40,7 +43,49 @@ bot.on('message',  msg => {
 
         }
     }
+    /* await fs.mkdir(`/qr_code_data/${msg.chat.id}`);
+    await bot.downloadFile(msg.photo[1].file_id, `./awesome_qr_data/${msg.chat.id}`);
+    await createAwesomeQR(msg.text, `./awesome_qr_data/${msg.chat.id}/`) */
+
 });
+
+/* function createAwesomeQR(text, filepath, chatId) {
+    return createQR(text, filepath)
+        .then(response => fs.writeFileSync(`./awesome_qr_data/${chatId}.png`, response))
+        .catch(err => console.log(err));
+};
+
+function createQR(text, filepath) {
+    return new Promise((resolve, reject) => {
+        const background = fs.readFileSync(`./awesome_qr_data/${filepath}`);
+        const buffer =  new AwesomeQR({
+            text: text,
+            size: 500,
+            margin: 5,
+            autoColor: true,
+            components: {
+                data: {
+                    scale: 1
+                },
+                timing: {
+                    scale: 1,
+                    protectors: true
+                },
+                cornerAlignment: {
+                    scale: 1,
+                    protectors: false
+                },
+                alignment: {
+                    scale: 1,
+                    protectors: false
+                }
+            },
+            backgroundImage: background,
+        }).draw();
+        resolve(buffer);
+    });
+}; */
+
 
 const QRCodeGenerator = (text, id) => {
     return new Promise((resolve, reject) => {

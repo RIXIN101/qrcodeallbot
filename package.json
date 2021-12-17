@@ -13,9 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "awesome-qr": "^2.1.5-rc.0",
     "fs": "^0.0.1-security",
     "node-telegram-bot-api": "^0.54.0",
     "nodemon": "^2.0.15",
-    "qrcode": "^1.5.0"
+    "qrcode": "^1.5.0",
+    "request": "^2.88.2"
   }
 }
